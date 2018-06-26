@@ -1,10 +1,8 @@
 class Artist < ApplicationRecord
   
-  validates :name, presence: true
-
+  validates :artist_name, presence: { message: "must be given please!"}, uniqueness: true
+  validates :email, confirmation: { case_sensitive: false }
+  
   # self.table_name = "performers"
-
-  # self.ignored_columns = %w(created_at updated_at)
-  # https://blog.bigbinary.com/2016/05/24/rails-5-adds-active-record-ignored-columns.html
 
 end

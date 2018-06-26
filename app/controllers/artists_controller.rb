@@ -2,6 +2,7 @@ class ArtistsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_artist, only: [:show, :destroy, :update]
   
+
   def index
     @artists = Artist.all
     render json: @artists, :except => [:created_at, :updated_at]
@@ -28,17 +29,18 @@ class ArtistsController < ApplicationController
 
   def update
     if @artist.update!(artist_params)
-      render json: @artist
+      render json: @artist, status: 200, message: "Successfully updated artist."
     end
   end
 
   private
 
   def artist_params
-    params.permit(:name)
+    params.permit(:artist_name, :passport_name, :phone, :email, :website, :address, :genre)
   end
 
   def set_artist
     @artist = Artist.find(params[:artist_id])
   end
 end
+

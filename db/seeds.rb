@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+artist_list = [
+  'Adele',
+  'Father John Misty',
+  'Benny Benassi',
+  'Ratatat',
+  'Red Hot Chili Peppers',
+  'Cat Powers'
+]
+
+artist_list.each do |name|
+  Artist.create(artist_name: name)
+end
+
+ 
+ 
