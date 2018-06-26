@@ -6,6 +6,7 @@ class CreateArtists < ActiveRecord::Migration[5.2]
       t.string :phone
       t.string :website
       t.text :address
+      t.string :genre
 
       t.timestamps
     end
