@@ -9,5 +9,12 @@ Rails.application.routes.draw do
   delete 'artists/:artist_id' => 'artists#destroy'
 
 
+  get 'tours' => 'tours#index'
+  get 'tours/:tour_id' => 'tours#show'
+  post 'tours' => 'tours#create'
+  get 'tours/:tour_id/edit' => 'tours#edit'
+  put 'tours/:tour_id' => 'tours#update'
+  delete 'tours/:tour_id' => 'tours#destroy'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

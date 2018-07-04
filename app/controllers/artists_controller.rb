@@ -1,8 +1,7 @@
 class ArtistsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  
   before_action :set_artist, only: [:show, :destroy, :update]
   
-
   def index
     @artists = Artist.all
     render json: @artists, :except => [:created_at, :updated_at]
