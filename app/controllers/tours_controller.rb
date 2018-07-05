@@ -1,6 +1,8 @@
 class ToursController < ApplicationController
+  skip_before_action :verify_authenticity_token
   
   before_action :set_tour, only: [:show, :destroy, :update]
+  before_action :set_artists, only: [:create]
 
   def index
     @tours = Tour.all
@@ -15,7 +17,11 @@ class ToursController < ApplicationController
 
   def create
     @tour = Tour.new(tour_params)
-    
+    pp @artists
+     
+    @tour.artists = @artists
+    pp @tour
+
     if @tour.save!
       render json: @tour
     end
@@ -35,11 +41,16 @@ class ToursController < ApplicationController
   private
 
   def tour_params
-    params.permit(:name, :number_shows)
+    params.permit(:name, :number_shows, artist_ids: [])
   end
 
   def set_tour
     @tour = Tour.find(params[:tour_id])
+  end
+
+  def set_artists
+    @artists = Artist.where(id: params[:artist_ids])
+    # Table.where(column params[ids])
   end
   
 end

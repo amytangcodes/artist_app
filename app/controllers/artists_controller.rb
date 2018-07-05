@@ -9,7 +9,7 @@ class ArtistsController < ApplicationController
 
   def show
     if @artist
-      render json: @artist, :except => [:created_at, :updated_at]
+      render json: @artist, :include => {:tours => {:except => [:artists, :created_at, :updated_at]}}, :except => [:created_at, :updated_at]
     end
   end
 
@@ -34,12 +34,12 @@ class ArtistsController < ApplicationController
 
   private
 
-  def artist_params
-    params.permit(:artist_name, :passport_name, :phone, :email, :website, :address, :genre)
-  end
+    def artist_params
+      params.permit(:artist_name, :passport_name, :phone, :email, :website, :address, :genre)
+    end
 
-  def set_artist
-    @artist = Artist.find(params[:artist_id])
-  end
+    def set_artist
+      @artist = Artist.find(params[:artist_id])
+    end
 end
 
