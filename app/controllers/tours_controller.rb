@@ -1,8 +1,8 @@
 class ToursController < ApplicationController
   skip_before_action :verify_authenticity_token
   
-  before_action :set_tour, only: [:show, :destroy, :update]
-  before_action :set_artists, only: [:create]
+  before_action :set_tour, only: [:show, :destroy, :update, :total_artists]
+  before_action :set_artists, only: [:total_artists, :create]
 
   def index
     @tours = Tour.all
@@ -38,19 +38,23 @@ class ToursController < ApplicationController
     end
   end
 
+  def total_artists
+    render html: "There are #{@tour.total_artists} artists in this #{@tour.name}"
+  end
+
   private
 
-  def tour_params
-    params.permit(:name, :number_shows, artist_ids: [])
-  end
+    def tour_params
+      params.permit(:name, :number_shows, artist_ids: [])
+    end
 
-  def set_tour
-    @tour = Tour.find(params[:tour_id])
-  end
+    def set_tour
+      @tour = Tour.find(params[:tour_id])
+    end
 
-  def set_artists
-    @artists = Artist.where(id: params[:artist_ids])
-    # Table.where(column params[ids])
-  end
+    def set_artists
+      @artists = Artist.where(id: params[:artist_ids])
+      # Table.where(column params[ids])
+    end
   
 end

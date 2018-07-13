@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_192612) do
+ActiveRecord::Schema.define(version: 2018_07_11_160423) do
 
   create_table "artist_tours", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "artist_id"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 2018_07_05_192612) do
     t.string "website"
     t.text "address"
     t.string "genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "event_name"
+    t.string "event_date"
+    t.string "venue"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
