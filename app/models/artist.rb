@@ -1,6 +1,6 @@
 class Artist < ApplicationRecord
-  has_many :artist_tours
-  has_many :tours, through: :artist_tours
+  # has_many :artist_tours
+  has_many :tours
   has_one :manager
 
   validates :artist_name, presence: { message: "must be given please!"}, uniqueness: true
